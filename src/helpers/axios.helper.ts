@@ -2,7 +2,7 @@ import axios from 'axios';
 import { cookiesHelper } from 'helpers';
 
 const axiosHelper = ({
-  token = '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',
+  token = process.env.REACT_APP_GITHUB_TOKEN,
   ...params
 }: any) => {
   const cookies = new cookiesHelper();
