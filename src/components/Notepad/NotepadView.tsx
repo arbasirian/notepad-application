@@ -8,6 +8,7 @@ type Props = {
 const NotepadView = ({ onShowStats }: Props) => {
   return (
     <Box>
+      Here
       <Button onClick={onShowStats}>View Stats</Button>
     </Box>
   );

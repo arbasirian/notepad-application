@@ -11,7 +11,7 @@ const axiosHelper = ({
 
   const header = authorization
     ? {
-        Authorization: `Token ${authorization}`,
+        Authorization: `token ${authorization}`,
         'accept-language': 'en',
         accept: 'application/vnd.github.v3+json',
         'Access-Control-Allow-Origin': '*',
