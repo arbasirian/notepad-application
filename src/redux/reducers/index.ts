@@ -1,6 +1,14 @@
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import mainReducer from './main.reducer';
 
-import { combineReducers } from 'redux';
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['notepad'],
+};
 
 const appReducer = combineReducers({
   main: mainReducer,
@@ -13,4 +21,4 @@ const rootReducer = (state: any, action: any) => {
   return appReducer(state, action);
 };
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
