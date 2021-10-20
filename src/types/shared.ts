@@ -40,3 +40,8 @@ export interface PromiseHelperArgs {
 }
 
 export type PromiseHelper = (args: PromiseHelperArgs) => Promise<any>;
+
+export type FetchingDataType<T> = {
+  fetching: boolean | undefined;
+  data: T;
+};

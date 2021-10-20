@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import mainReducer from './main.reducer';
+import statsReducer from './stats.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const appReducer = combineReducers({
   main: mainReducer,
+  stats: statsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

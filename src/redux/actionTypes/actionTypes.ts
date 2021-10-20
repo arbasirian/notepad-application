@@ -13,4 +13,6 @@ export default [
    * u: UPDATE
    * d: DELETE
    */
+
+  promise('STATS', 'a'),
 ];
