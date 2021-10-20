@@ -11,10 +11,10 @@ export const Title1 = styled.h1<TitleProps>`
       : 'ltr'};
 
   margin: 0;
-  font-size: 42px;
+  font-size: 24px;
   letter-spacing: ${(props) =>
     props.theme.language === 'en' ? '0' : '-0.02em'};
-  line-height: 56px;
+  line-height: 44px;
 
   /* TEXT ALIGN */
   text-align: ${(props) => (props.align ? props.align : '')};

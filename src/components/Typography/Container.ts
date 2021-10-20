@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 1500px;
+  width: 1024px;
   margin: 0 auto;
   direction: ${(props) => (props.theme.language === 'fa' ? 'rtl' : 'ltr')};
 
   @media screen and (max-width: ${(props) => props.theme.breakpoints.xxl}) {
-    width: 1200px;
+    width: 1024px;
   }
   @media screen and (max-width: ${(props) => props.theme.breakpoints.xl}) {
     width: 960px;

@@ -7,6 +7,7 @@ export const BodyStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   .has-cursor {
     cursor: pointer;
   }
@@ -53,6 +54,7 @@ export const BodyStyles = css`
     }
   }
 `;
+
 export const AntLayouts = css`
   .ant-layout {
     min-height: 100vh;
@@ -63,33 +65,7 @@ export const AntLayouts = css`
     padding: 12px;
     line-height: 56px;
   }
-  .ant-layout-sider {
-    min-height: 100vh;
-    background: ${({ theme }) => theme.colors.accent};
-    box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.25);
-    .ant-layout-sider-children {
-      .ant-menu.ant-menu-dark,
-      .ant-menu-dark .ant-menu-sub,
-      .ant-menu.ant-menu-dark .ant-menu-sub {
-        background: ${({ theme }) => theme.colors.primary};
-      }
-      .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal)
-        .ant-menu-item-selected {
-        // Selected Menu
-        background: ${({ theme }) => theme.colors.primary};
-      }
-    }
-    .ant-layout-sider-trigger {
-      background: ${({ theme }) => theme.colors.primary};
-    }
-  }
-  .ant-menu-item {
-    display: flex;
-    align-items: center;
-    &:hover {
-      font-weight: 600;
-    }
-  }
+
   .ant-menu-item .ant-menu-item-icon,
   .ant-menu-submenu-title .ant-menu-item-icon,
   .ant-menu-item .anticon,
@@ -112,6 +88,7 @@ export const AntLayouts = css`
   }
   .ant-layout-content {
     overflow: hidden;
+    background: ${(props) => props.theme.colors.gray4};
     .ant-tabs {
       color: ${(props) => props.theme.colors.gray1};
       width: 100%;
@@ -225,6 +202,7 @@ export const AntLayouts = css`
     padding-right: 0 !important;
   }
 `;
+
 export const AntModal = css`
   .ant-modal {
     margin: 0 auto;
@@ -306,44 +284,7 @@ export const Body = css`
     }
   }
 `;
-export const RGB = css`
-  .react-grid-layout {
-    position: relative;
-    width: calc(100% - 224px);
-  }
-`;
-export const ReportsFilter = css`
-  .reports-filter {
-    border: none;
-    box-shadow: none;
-    .ant-picker-suffix {
-      order: -1;
-      margin-left: 0;
-      margin-right: 10px;
-    }
-    .ant-picker-focused {
-      box-shadow: 0;
-    }
-    .ant-picker-panel-container {
-      border-radius: 15px;
-    }
-  }
-`;
-export const RangePicker = css`
-  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
-    background-color: ${({ theme }) => theme.colors.blue1};
-    border-radius: 4px !important;
-  }
-  .ant-picker-cell-in-view.ant-picker-cell-today
-    .ant-picker-cell-inner::before {
-    border: none;
-  }
-  .ant-picker-panel-container {
-    border-radius: 15px;
-  }
-`;
+
 export const DesignedScroll = css`
   .designed-scroll {
     &::-webkit-scrollbar {
@@ -392,38 +333,12 @@ export const DesignedScroll = css`
     }
   }
 `;
-export const MenuSiderCollapsed = css`
-  .ant-layout-sider-collapsed {
-    .ant-menu-item,
-    .ant-menu-submenu-title {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 0px !important;
-      .anticon {
-        display: block !important;
-        margin: 0 auto !important;
-        line-height: 22px !important;
-      }
-      .ant-menu-submenu-arrow {
-        display: none !important;
-      }
-      span {
-        display: none !important;
-      }
-    }
-  }
-`;
+
 export default createGlobalStyle`
   ${BodyStyles};
   ${AntLayouts};
   ${AntModal};
   ${FlexProp};
   ${Body};
-  ${RGB};
-  ${ReportsFilter};
-  ${RangePicker};
   ${DesignedScroll};
-  ${MenuSiderCollapsed};
 `;
