@@ -18,7 +18,17 @@ export class HomePage extends PureComponent<Props, State> {
     const { showStats } = this.state;
     return (
       <Box>
-        <Box>{showStats ? <StatsView /> : <NotepadView />}</Box>
+        <Box>
+          {showStats ? (
+            <StatsView
+              onHideStats={() => this.setState({ showStats: false })}
+            />
+          ) : (
+            <NotepadView
+              onShowStats={() => this.setState({ showStats: true })}
+            />
+          )}
+        </Box>
       </Box>
     );
   }

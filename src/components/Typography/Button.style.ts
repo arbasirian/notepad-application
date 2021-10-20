@@ -3,143 +3,38 @@ import { BoxProps } from 'types/components';
 
 const getCustomeType = (custome_type: string, custome_shape: string) => {
   switch (custome_type) {
-    case 'primary':
+    case 'red':
       return css`
         border-color: ${(props) =>
           custome_shape === 'fill'
-            ? props.theme.colors.primary
+            ? props.theme.colors.red
             : custome_shape === 'outline'
-            ? props.theme.colors.primary
+            ? props.theme.colors.red
             : 'transparent'};
         background-color: ${(props) =>
           custome_shape === 'fill'
-            ? props.theme.colors.primary
+            ? props.theme.colors.red
             : custome_shape === 'outline'
             ? 'transparent'
             : 'transparent'};
         color: ${(props) =>
           custome_shape === 'fill'
             ? props.theme.colors.white
-            : custome_shape === 'outline'
-            ? props.theme.colors.primary
-            : props.theme.colors.primary};
-      `;
-    case 'secondary':
-      return css`
-        border-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.accent
-            : custome_shape === 'outline'
-            ? props.theme.colors.accent
-            : 'transparent'};
-        background-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.accent
-            : custome_shape === 'outline'
-            ? 'transparent'
-            : 'transparent'};
-        color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.forceWhite
-            : custome_shape === 'outline'
-            ? props.theme.colors.accent
-            : props.theme.colors.accent};
-      `;
-    case 'tertiary':
-      return css`
-        border-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.gray7
-            : custome_shape === 'outline'
-            ? props.theme.colors.gray7
-            : 'transparent'};
-        background-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.gray7
-            : custome_shape === 'outline'
-            ? 'transparent'
-            : 'transparent'};
-        color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.gray1
-            : custome_shape === 'outline'
-            ? props.theme.colors.gray1
-            : props.theme.colors.gray1};
-      `;
-    case 'success':
-      return css`
-        border-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.green
-            : custome_shape === 'outline'
-            ? props.theme.colors.green
-            : 'transparent'};
-        background-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.green
-            : custome_shape === 'outline'
-            ? 'transparent'
-            : 'transparent'};
-        color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.forceWhite
-            : custome_shape === 'outline'
-            ? props.theme.colors.green
-            : props.theme.colors.green};
-      `;
-    case 'danger':
-      return css`
-        border-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.red
-            : custome_shape === 'outline'
-            ? props.theme.colors.red
-            : 'transparent'};
-        background-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.red
-            : custome_shape === 'outline'
-            ? 'transparent'
-            : 'transparent'};
-        color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.forceWhite
             : custome_shape === 'outline'
             ? props.theme.colors.red
             : props.theme.colors.red};
       `;
-    case 'alert':
+    case 'blue':
       return css`
         border-color: ${(props) =>
           custome_shape === 'fill'
-            ? props.theme.colors.orange1
+            ? props.theme.colors.blue
             : custome_shape === 'outline'
-            ? props.theme.colors.orange1
+            ? props.theme.colors.blue
             : 'transparent'};
         background-color: ${(props) =>
           custome_shape === 'fill'
-            ? props.theme.colors.orange1
-            : custome_shape === 'outline'
-            ? 'transparent'
-            : 'transparent'};
-        color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.forceWhite
-            : custome_shape === 'outline'
-            ? props.theme.colors.forceWhite
-            : props.theme.colors.forceWhite};
-      `;
-    default:
-      return css`
-        border-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.primary
-            : custome_shape === 'outline'
-            ? props.theme.colors.primary
-            : 'transparent'};
-        background-color: ${(props) =>
-          custome_shape === 'fill'
-            ? props.theme.colors.primary
+            ? props.theme.colors.blue
             : custome_shape === 'outline'
             ? 'transparent'
             : 'transparent'};
@@ -147,8 +42,51 @@ const getCustomeType = (custome_type: string, custome_shape: string) => {
           custome_shape === 'fill'
             ? props.theme.colors.white
             : custome_shape === 'outline'
-            ? props.theme.colors.primary
-            : props.theme.colors.primary};
+            ? props.theme.colors.blue
+            : props.theme.colors.blue};
+      `;
+    case 'green':
+      return css`
+        border-color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.green
+            : custome_shape === 'outline'
+            ? props.theme.colors.green
+            : 'transparent'};
+        background-color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.green
+            : custome_shape === 'outline'
+            ? 'transparent'
+            : 'transparent'};
+        color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.white
+            : custome_shape === 'outline'
+            ? props.theme.colors.green
+            : props.theme.colors.green};
+      `;
+
+    default:
+      return css`
+        border-color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.gray3
+            : custome_shape === 'outline'
+            ? props.theme.colors.gray3
+            : 'transparent'};
+        background-color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.transparent
+            : custome_shape === 'outline'
+            ? 'transparent'
+            : 'transparent'};
+        color: ${(props) =>
+          custome_shape === 'fill'
+            ? props.theme.colors.black
+            : custome_shape === 'outline'
+            ? props.theme.colors.black
+            : props.theme.colors.black};
       `;
   }
 };
@@ -195,12 +133,11 @@ const getCustomeShape = (custome_size: string, custome_shape: string) => {
     default:
       // medium size
       return css`
-        padding: ${custome_shape !== 'borderless' ? '10px 15px' : '10px 0'};
+        padding: ${custome_shape !== 'borderless' ? '15px 20px' : '10px 0'};
         height: 48px !important;
 
         span {
-          font-size: 16px;
-          line-height: 24px;
+          font-size: 14px;
           letter-spacing: 0;
         }
       `;
