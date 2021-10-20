@@ -13,9 +13,15 @@ const axiosHelper = ({
     ? {
         Authorization: `Token ${authorization}`,
         'accept-language': 'en',
+        accept: 'application/vnd.github.v3+json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       }
     : {
         'accept-language': 'en',
+        accept: 'application/vnd.github.v3+json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
       };
 
   const data = {
