@@ -105,7 +105,7 @@ export const Text = styled.span<TextProps>`
   color: ${(props) =>
     !!props.color && !!props.theme.colors[props.color]
       ? props.theme.colors[props.color]
-      : props.theme.colors.black1};
+      : props.theme.colors.gray1};
 
   /* FONT_FAMILY */
   font-family: ${(props) => {

@@ -9,9 +9,19 @@ export * from './Auth';
 export * from './Form';
 
 /**
+ * Notepad
+ */
+export * from './Notepad';
+
+/**
  * Shared
  */
 export * from './Shared';
+
+/**
+ * Stats
+ */
+export * from './Stats';
 
 /**
  * Typography

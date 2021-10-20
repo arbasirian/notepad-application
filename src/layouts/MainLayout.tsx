@@ -12,14 +12,11 @@ type Props = {
 const MainLayout = ({ children }: Props) => {
   return (
     <Layout>
-      <Sider>Sider</Sider>
-      <Layout>
-        <Content>
-          <Box>
-            <ErrorBoundary>{children}</ErrorBoundary>
-          </Box>
-        </Content>
-      </Layout>
+      <Content>
+        <Box>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </Box>
+      </Content>
     </Layout>
   );
 };
