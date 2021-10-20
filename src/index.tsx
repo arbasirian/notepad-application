@@ -14,7 +14,7 @@ import GlobalStyle from 'assets/styles/global.styles';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={themeVariables('light', 'en')}>
+    <ThemeProvider theme={themeVariables('en')}>
       <GlobalStyle />
       <App />
     </ThemeProvider>
