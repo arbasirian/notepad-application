@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 export const BodyStyles = css`
   body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

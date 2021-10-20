@@ -111,7 +111,7 @@ export const Text = styled.span<TextProps>`
   font-family: ${(props) => {
     if (props.fontFamily) return props.fontFamily;
     if (props.theme.language === 'fa') return 'Vazir';
-    return 'Poppins';
+    return 'Arial';
   }};
 
   /* WEIGHT */

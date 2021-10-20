@@ -29,7 +29,7 @@ export const Title5 = styled.h5<TitleProps>`
   font-family: ${(props) => {
     if (props.fontFamily) return props.fontFamily;
     if (props.theme.language === 'fa') return 'Vazir';
-    return 'Poppins';
+    return 'Arial';
   }};
 
   /* WEIGHT */
