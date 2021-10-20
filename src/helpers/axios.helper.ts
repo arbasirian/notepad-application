@@ -13,15 +13,21 @@ const axiosHelper = ({
     ? {
         Authorization: `token ${authorization}`,
         'accept-language': 'en',
+        crossdomain: 'true',
         accept: 'application/vnd.github.v3+json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers':
+          'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
       }
     : {
         'accept-language': 'en',
         accept: 'application/vnd.github.v3+json',
+        crossdomain: 'true',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers':
+          'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
       };
 
   const data = {
