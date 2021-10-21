@@ -1,13 +1,28 @@
-import { FetchingDataType } from 'types';
+import { DurationInputArg2, Moment } from 'moment';
+import { FetchingDataType, FiltersDataType } from 'types';
 
 export interface StatsStateModel {
-  all: FetchingDataType<GistModel[]>;
+  all: FetchingDataType<FiltersDataType<GistModel[], LoadAllStatsParamsModel>>;
+  time_buckets: TimeBucketModel[];
+  filter_info: StatsFilterModel;
 }
 
+export interface TimeBucketModel {
+  time: Moment;
+  second: number;
+}
 export interface LoadAllStatsParamsModel {
   since: string;
   per_page: number;
   page: number;
+}
+
+export interface StatsFilterModel {
+  date?: Moment;
+  chart_qty: number;
+  per_page: number;
+  terms_type: DurationInputArg2;
+  terms_length: number;
 }
 
 export interface GistModel {

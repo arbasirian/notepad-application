@@ -508,7 +508,7 @@ type ButtonSizeProps = Partial<
 >;
 
 type ButtonNamedProps = Partial<{
-  type: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger' | 'alert';
+  type: 'red' | 'blue' | 'green' | 'success' | 'danger' | 'alert';
   shape: 'fill' | 'outline' | 'borderless';
   size: 'xsmall' | 'small' | 'medium' | 'large';
   loading: boolean;

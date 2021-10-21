@@ -3,12 +3,18 @@ import * as echarts from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 
 import { Box, Button, Flex, Title2 } from 'components';
+import { useSelector } from 'react-redux';
+import { statsSelector } from 'redux/selectors';
 
 const StatsGistsCreated = () => {
+  const bucketList = useSelector(statsSelector.buckets);
+  const filterInfo = useSelector(statsSelector.filterInfo);
   const option: echarts.EChartsOption = {
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: bucketList.map((item) =>
+        item.time.format(filterInfo.terms_type === 'day' ? 'MM-DD' : 'hh:mm:ss')
+      ),
     },
     yAxis: {
       type: 'value',

@@ -12,7 +12,7 @@ type State = {
 };
 export class HomePage extends PureComponent<Props, State> {
   state = {
-    showStats: false,
+    showStats: true,
   };
   render() {
     const { showStats } = this.state;
