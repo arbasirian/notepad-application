@@ -20,7 +20,7 @@ export class HomePage extends PureComponent<Props, State> {
     return (
       <Box>
         <Box>
-          Here3 Here: {process?.env?.REACT_APP_BASE_URL_API}
+          Here4 Here: {process?.env?.REACT_APP_BASE_URL_API}
           {showStats ? (
             <StatsView
               onHideStats={() => this.setState({ showStats: false })}
