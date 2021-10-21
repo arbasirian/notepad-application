@@ -34,6 +34,5 @@ jobs:
     steps:
       - name: Deploy to gh-pages
         run: yarn deploy
-        with:
+        env:
           github_token: ${{ secrets.REACT_APP_BASE_URL_API }}
-          publish_dir: ./build
