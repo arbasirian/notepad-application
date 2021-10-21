@@ -3,10 +3,10 @@ name: Build & deploy
 on:
   push:
     branches:
-      - main
+      - deployment
   pull_request:
     branches:
-      - main
+      - deployment
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/deployment'
 
     steps:
       - name: Download artifact
@@ -53,5 +53,5 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          REACT_APP_BASE_URL_API: ${{ secrets.REACT_APP_BASE_URL_API }}
           publish_dir: ./build
