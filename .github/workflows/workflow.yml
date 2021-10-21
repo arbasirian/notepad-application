@@ -14,12 +14,19 @@ jobs:
         node-version: [15.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - run: yarn install
-      - run: yarn build
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          yarn install
+          yarn build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          args: --acl public-read --follow-symlinks --delete
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
         env:
           REACT_APP_BASE_URL_API: ${{ secrets.REACT_APP_BASE_URL_API }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
