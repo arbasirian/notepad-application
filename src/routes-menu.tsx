@@ -4,7 +4,7 @@ import { DashboardOutlined } from '@ant-design/icons';
 
 const Menu = [
   {
-    title: 'HomePage',
+    title: 'Home',
     slug: 'homepage',
     path: '/',
     isParent: false,
