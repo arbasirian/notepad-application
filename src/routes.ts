@@ -3,7 +3,7 @@ import { HomePage, NotFoundPage } from 'pages';
 
 const ROUTES: RouteModel[] = [
   {
-    path: '/',
+    path: '/notepad-application',
     slug: 'homepage',
     exact: true,
     authorized: false,
