@@ -1,17 +1,43 @@
 import ActionTypes from '../actionTypes';
 
-import { MainState } from 'types';
+import { MainState, StatsStateModel } from 'types';
+import { reducerItemInitialState } from 'redux/reducers.constants';
+import { isArray } from 'lodash';
 
-export const initialState: MainState = {
-  sideMenu: false,
+export const initialState: StatsStateModel = {
+  all: reducerItemInitialState,
 };
 
 export default function reducer(state: any = initialState, action: any = {}) {
   switch (action.type) {
-    case ActionTypes.TOGGLE_SIDE_MENU:
+    // LOAD_ALL_STATS
+    case ActionTypes.LOAD_ALL_STATS:
       return {
         ...state,
-        sideMenu: action.payload,
+        all: {
+          ...state.all,
+          fetching: true,
+        },
+      };
+    case ActionTypes.LOAD_ALL_STATS_SUCCESS:
+      return {
+        ...state,
+        all: {
+          data:
+            state.all.data && isArray(state.all.data)
+              ? [...state.all.data, ...action.data]
+              : action.data,
+          fetching: false,
+        },
+      };
+    case ActionTypes.LOAD_ALL_STATS_FAILURE:
+      return {
+        ...state,
+        all: {
+          ...state.all.data,
+          error: action.error,
+          fetching: false,
+        },
       };
 
     default:
