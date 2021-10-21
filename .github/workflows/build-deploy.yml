@@ -30,6 +30,13 @@ jobs:
         run: yarn build
 
       - name: Deploy
-        run: yarn deploy
+        run: |
+          git config --global user.name "Armin Basirain"
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          yarn deploy
         env:
-          REACT_APP_BASE_URL_API: ${{ secrets.REACT_APP_BASE_URL_API }}
+          user_name: 'Armin Basirian'
+          user_email: 'ar.basirian@gmail.com'
+          github_token: ${{ secrets.REACT_APP_BASE_URL_API }}
+          repository: ${{ github.repository }}

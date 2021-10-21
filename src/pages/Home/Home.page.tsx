@@ -16,7 +16,7 @@ export class HomePage extends PureComponent<Props, State> {
   };
   render() {
     const { showStats } = this.state;
-    console.log('test', process.env);
+    console.log('test2', process);
     return (
       <Box>
         <Box>
