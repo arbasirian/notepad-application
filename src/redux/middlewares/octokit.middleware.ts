@@ -1,14 +1,14 @@
 import { call, put } from 'redux-saga/effects';
 
-import { axiosHelper } from 'helpers';
+import octokitHelper from 'helpers/octokit.helper';
 
-export default function* axiosMiddleware(action: any) {
+export default function* octokitMiddleware(action: any) {
   const { type, resolve, reject, ...params } = action;
 
   yield put({ type: `${type}_REQUESTING` });
 
   try {
-    const { data } = yield call(axiosHelper, params);
+    const { data } = yield call(octokitHelper, { ...params, type });
 
     yield put({ type: `${type}_SUCCESS`, data });
     if (resolve) resolve(data);

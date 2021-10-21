@@ -16,11 +16,9 @@ export class HomePage extends PureComponent<Props, State> {
   };
   render() {
     const { showStats } = this.state;
-    console.log('test', process.env);
     return (
       <Box>
         <Box>
-          Here5 Here: {process?.env?.REACT_APP_BASE_URL_API}
           {showStats ? (
             <StatsView
               onHideStats={() => this.setState({ showStats: false })}

@@ -10,7 +10,6 @@ import { store, persistor } from 'redux/store';
 import themeVariables from 'theme/variables';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import 'config/axios.config';
 import GlobalStyle from 'assets/styles/global.styles';
 
 ReactDOM.render(

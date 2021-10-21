@@ -1,8 +1,8 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import axiosMiddleware from '../middlewares/axios.middleware';
+import octokitMiddleware from '../middlewares/octokit.middleware';
 import ActionTypes from '../actionTypes';
 
 export default function* mainSaga() {
-  yield takeLatest(ActionTypes.LOAD_ALL_STATS, axiosMiddleware);
+  yield takeLatest(ActionTypes.LOAD_ALL_STATS, octokitMiddleware);
 }

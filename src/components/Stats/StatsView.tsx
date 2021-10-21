@@ -16,7 +16,7 @@ const StatsView = ({ onHideStats }: Props) => {
       statsAction.loadAll({
         per_page: 10,
         page: 1,
-        since: moment().subtract(1, 'd').format('YYYY-MM-DDTHH:MM:SS'),
+        since: moment().subtract(1, 'd').toISOString(),
       })
     );
   }, []);

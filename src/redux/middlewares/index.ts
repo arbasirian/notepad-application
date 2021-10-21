@@ -1,5 +1,5 @@
-import * as axiosMiddleware from "./axios.middleware";
+import * as octokitMiddleware from './octokit.middleware';
 
-export { axiosMiddleware };
+export { octokitMiddleware };
 
-export default axiosMiddleware;
+export default octokitMiddleware;
