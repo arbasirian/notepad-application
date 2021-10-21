@@ -4,6 +4,9 @@ import { Select as SelectWrapper } from 'antd';
 
 import { Box, Flex, Submit, Select, DatePicker, NumberInput } from 'components';
 import { StatsFilterModel } from 'types';
+import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { statsSelector } from 'redux/selectors';
 
 type Props = {
   onSubmit: (data: StatsFilterModel) => void;
@@ -11,14 +14,16 @@ type Props = {
 };
 
 export default ({ onSubmit, loading }: Props): JSX.Element => {
+  const filterInfo = useSelector(statsSelector.filterInfo);
+
   return (
     <Formik
       initialValues={{
-        date: undefined,
-        terms_type: 'second',
-        chart_qty: 8,
-        per_page: 50,
-        terms_length: 5,
+        date: filterInfo.date || moment(),
+        terms_type: filterInfo.terms_type,
+        chart_qty: filterInfo.chart_qty,
+        per_page: filterInfo.per_page,
+        terms_length: filterInfo.terms_length,
       }}
       validateOnMount
       onSubmit={onSubmit}

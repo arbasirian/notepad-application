@@ -15,6 +15,7 @@ export default [
    */
 
   promise('STATS', 'a'),
+  promise('LOAD_MORE_STATS'),
   promise('ADD_TIME_BUCKETS'),
   promise('UPDATE_STATS_FILTERS'),
 ];

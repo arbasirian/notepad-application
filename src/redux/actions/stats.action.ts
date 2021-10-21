@@ -11,6 +11,12 @@ export function loadAll(params: LoadAllStatsParamsModel) {
     params,
   };
 }
+export function loadMore(params: LoadAllStatsParamsModel) {
+  return {
+    type: ActionTypes.LOAD_MORE_STATS,
+    params,
+  };
+}
 export function addTimeBuckets(data: TimeBucketModel[]) {
   return {
     type: ActionTypes.ADD_TIME_BUCKETS,

@@ -40,7 +40,34 @@ const createBucketList = (
   return buckets;
 };
 
+const gitsItemsPerTime = (gists: GistModel[], times: TimeBucketModel[]) => {
+  const chartDetails: number[] = [];
+  if (!gists || gists?.length < 1) return [];
+  times.forEach((item, index) =>
+    chartDetails.push(
+      gists.filter((gist) =>
+        filterItemsBaseTime(gist, item.time, times[index + 1]?.time)
+      ).length
+    )
+  );
+  return chartDetails;
+};
+
+const filterItemsBaseTime = (
+  gist: GistModel,
+  current: Moment,
+  next: Moment
+): boolean => {
+  if (
+    moment(new Date(gist.created_at)).diff(current, 'second') >= 0 &&
+    next?.diff(moment(new Date(gist.created_at)), 'second') > 0
+  )
+    return true;
+  return false;
+};
+
 export default {
   cleanGistsList,
   createBucketList,
+  gitsItemsPerTime,
 };

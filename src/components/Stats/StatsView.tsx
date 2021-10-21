@@ -23,12 +23,12 @@ type Props = {
 const StatsView = ({ onHideStats }: Props) => {
   const promise = usePromise();
   const [actionLoading, setLoading] = useState(false);
-
   const filterInfo = useSelector(statsSelector.filterInfo);
 
+  // First fetch gists data
   useEffect(() => {
     const timeList = statsHelper.createBucketList(
-      filterInfo.date || moment(),
+      moment(),
       filterInfo.chart_qty,
       filterInfo.terms_length,
       filterInfo.terms_type
@@ -39,12 +39,16 @@ const StatsView = ({ onHideStats }: Props) => {
         statsAction.loadAll({
           per_page: filterInfo.per_page,
           page: 1,
-          since: timeList[0].time.toISOString(),
+          since: moment().toISOString(),
         })
       ),
     ]);
   }, []);
 
+  /**
+   * Function that get gists base on new filters
+   * @param {StatsFilterModel} filters - Selected user filter info
+   */
   const handleFilterGists = (filters: StatsFilterModel) => {
     setLoading(true);
     const timeList = statsHelper.createBucketList(
@@ -62,7 +66,7 @@ const StatsView = ({ onHideStats }: Props) => {
     ).then(() => {
       Promise.all([
         promise(statsAction.addTimeBuckets(timeList)),
-        promise(statsAction.upadteStatsFilter(filters)),
+        promise(statsAction.upadteStatsFilter({ ...filters, page: 1 })),
       ]);
 
       setLoading(false);

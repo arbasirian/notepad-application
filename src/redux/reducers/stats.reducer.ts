@@ -14,6 +14,7 @@ export const initialState: StatsStateModel = {
     per_page: 50,
     terms_type: 'second',
     terms_length: 5,
+    page: 1,
   },
 };
 
@@ -32,14 +33,40 @@ export default function reducer(state: any = initialState, action: any = {}) {
       return {
         ...state,
         all: {
-          data:
-            state?.all?.data?.data && isArray(state.all.data.data)
-              ? [...state.all.data.data, ...action.data]
-              : action.data,
+          data: action.data,
           fetching: false,
         },
       };
     case ActionTypes.LOAD_ALL_STATS_FAILURE:
+      return {
+        ...state,
+        all: {
+          ...state.all.data,
+          error: action.error,
+          fetching: false,
+        },
+      };
+    // LOAD_MORE_STATS
+    case ActionTypes.LOAD_MORE_STATS:
+      return {
+        ...state,
+        all: {
+          ...state.all,
+          fetching: true,
+        },
+      };
+    case ActionTypes.LOAD_MORE_STATS_SUCCESS:
+      console.log(`action.data`, action.data);
+      return {
+        ...state,
+        all: {
+          data: action.data
+            ? [...state.all.data, ...action.data]
+            : [...state.all.data],
+          fetching: false,
+        },
+      };
+    case ActionTypes.LOAD_MORE_STATS_FAILURE:
       return {
         ...state,
         all: {
