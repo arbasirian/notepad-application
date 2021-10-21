@@ -1,38 +1,47 @@
-name: Build & deploy
+name: CI/CD
 
 on:
   push:
-    branches:
-      - deployment
+    branches: [ deployment ]
   pull_request:
-    branches:
-      - deployment
+    branches: [ deployment ]
 
 jobs:
   build:
-    name: Build
+
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.18.*
-
-      - name: Install NPM packages
-        run: yarn install
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/deployment'
+    strategy:
+      matrix:
+        node-version: [14.18.x]
 
     steps:
-      - name: Deploy to gh-pages
-        run: yarn deploy
-        env:
-          github_token: ${{ secrets.REACT_APP_BASE_URL_API }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests and generate coverage report
+      run: npm test -- --coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy
+      run: |
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin https://${github_token}@github.com/${repository}
+        npm run deploy
+      env:
+=
+        REACT_APP_BASE_URL_API: ${{ secrets.REACT_APP_BASE_URL_API }}
