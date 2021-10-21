@@ -15,9 +15,6 @@ import { NotFoundPage } from 'pages';
 const App: FC = () => (
   <Router>
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/notepad-application" />
-      </Route>
       {ROUTES.map((route) => (
         <RouteWithSubRoutes key={route.slug} {...route} />
       ))}
