@@ -24,6 +24,7 @@ const MainLayout = ({ children }: Props) => {
             minHeight="85vh"
             borderRadius="10px"
             background="white"
+            marginBottom="30px"
           >
             <ErrorBoundary>{children}</ErrorBoundary>
           </Box>

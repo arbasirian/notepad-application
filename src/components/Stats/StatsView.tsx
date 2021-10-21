@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { Box, Button, Flex } from 'components';
+import {
+  Box,
+  Button,
+  Flex,
+  StatsFilePerGist,
+  StatsGistsCreated,
+} from 'components';
 import { usePromise } from 'hooks';
 import { statsAction } from 'redux/actions';
 import moment from 'moment';
@@ -26,6 +32,9 @@ const StatsView = ({ onHideStats }: Props) => {
       <Flex justifyContent="flex-end">
         <Button onClick={onHideStats}>Close Stats</Button>
       </Flex>
+
+      <StatsGistsCreated />
+      <StatsFilePerGist />
     </Box>
   );
 };
