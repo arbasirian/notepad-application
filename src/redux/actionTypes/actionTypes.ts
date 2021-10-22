@@ -1,10 +1,6 @@
-import { single, promise } from './lib';
+import { promise } from './lib';
 
 export default [
-  // Single Actions
-
-  single('TOGGLE_SIDE_MENU'),
-
   /**
    * Promise Actions -> Second arguments guide
    * c: CREATE
@@ -14,6 +10,10 @@ export default [
    * d: DELETE
    */
 
+  // NOTEPAD
+  promise('NOTEPAD', 'lucd'),
+
+  // STATS
   promise('STATS', 'a'),
   promise('STATS_FILES', 'a'),
   promise('LOAD_MORE_STATS'),
