@@ -40,6 +40,13 @@ const createBucketList = (
   return buckets;
 };
 
+/**
+ * Funcation that return array of gists numbers for chart
+ * @param {GistModel[]} gists - list of gist files
+ * @param {TimeBucketModel[]} times - time steps
+ * @param {DurationInputArg2} timeType - type of length
+ * @returns {number[]}
+ */
 const gitsItemsPerTime = (
   gists: GistModel[],
   times: TimeBucketModel[],
@@ -47,9 +54,10 @@ const gitsItemsPerTime = (
 ): number[] => {
   const chartDetails: number[] = [];
   if (!gists || gists?.length < 1) return new Array(times.length).fill(0);
+  const gistList = [...gists];
   times.forEach((item, index) =>
     chartDetails.push(
-      gists.filter((gist) =>
+      gistList.filter((gist) =>
         filterItemsBaseTime(gist, item.time, times[index + 1]?.time, timeType)
       ).length
     )
@@ -57,17 +65,24 @@ const gitsItemsPerTime = (
   return chartDetails;
 };
 
+/**
+ * Funcation that return array of files numbers for chart
+ * @param {GistModel[]} gists - list of gist files
+ * @param {TimeBucketModel[]} times - time steps
+ * @param {DurationInputArg2} timeType - type of length
+ * @returns {number[]}
+ */
 const gitsFilesPerTime = (
   gists: GistModel[],
   times: TimeBucketModel[],
   timeType: DurationInputArg2
 ): number[] => {
   const chartDetails: number[] = [];
-
   if (!gists || gists?.length < 1) return new Array(times.length).fill(0);
+  const gistList = [...gists];
   times.forEach((item, index) =>
     chartDetails.push(
-      gists
+      gistList
         .filter((gist) =>
           filterItemsBaseTime(gist, item.time, times[index + 1]?.time, timeType)
         )
@@ -77,22 +92,24 @@ const gitsFilesPerTime = (
   return chartDetails;
 };
 
+/**
+ * Function that check the gist date that is between to date
+ * @param {GistModel} gist - gist file info
+ * @param {Moment} current - current time
+ * @param {Moment} next - next time
+ * @param {DurationInputArg2} timeType - length type
+ * @returns {boolean}
+ */
 const filterItemsBaseTime = (
   gist: GistModel,
   current: Moment,
   next: Moment,
   timeType: DurationInputArg2
 ): boolean => {
+  if (!next) return true;
   const createdAt: Moment = moment(gist.created_at);
-  if (!next) return false;
 
-  if (
-    moment(createdAt, DATE_FORMAT).isBetween(
-      moment(current, DATE_FORMAT),
-      moment(next, DATE_FORMAT)
-    )
-  )
-    return true;
+  if (createdAt.isBetween(current, next, timeType, '[)')) return true;
   return false;
 };
 
