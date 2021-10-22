@@ -14,7 +14,7 @@ const MainLayout = ({ children }: Props) => {
     <Layout>
       <Content>
         <Container>
-          <Title1 padding="30px 24px" paddingM="0">
+          <Title1 padding="30px 24px" paddingM="30px 24px">
             Notepad Application
           </Title1>
           <Box

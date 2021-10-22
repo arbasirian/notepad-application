@@ -92,7 +92,7 @@ const StatsView = ({ onHideStats }: Props) => {
 
   return (
     <Box>
-      <Flex justifyContent="flex-end" flexGap="10px">
+      <Flex justifyContent="flex-end" flexGap="10px" marginBottom="30px">
         <Popover
           placement="bottomRight"
           content={

@@ -18,11 +18,21 @@ const octokitHelper = async ({ type, ...params }: any) => {
       per_page: params.params.per_page,
       since: params.params.since,
     });
+
   if (type === ActionTypes.CREATE_NOTEPAD)
     return await octokit.request('POST /gists', { ...params.data });
 
   if (type === ActionTypes.LOAD_NOTEPAD)
     return await octokit.request(`GET /gists/${params.params.notepadId}`);
+
+  if (type === ActionTypes.DELETE_NOTEPAD)
+    return await octokit.request(`DELETE /gists/${params.params.notepadId}`);
+
+  if (type === ActionTypes.UPDATE_NOTEPAD)
+    return await octokit.request(`PATCH /gists/${params.data.notepadId}`, {
+      ...params.data.notepad,
+      gist_id: params.data.notepadId,
+    });
 
   return await octokit;
 };

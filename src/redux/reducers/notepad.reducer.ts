@@ -34,6 +34,15 @@ export default function reducer(state: any = initialState, action: any = {}) {
         },
       };
 
+    // CLEAR_NOTEPAD
+    case ActionTypes.CLEAR_NOTEPAD:
+      return {
+        ...state,
+        detail: {
+          fetching: false,
+        },
+      };
+
     default:
       return state;
   }

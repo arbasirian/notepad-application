@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
+import * as yup from 'yup';
 
 import { Box, Flex, Submit, Input, TextArea, Button } from 'components';
 
@@ -13,6 +14,10 @@ type Props = {
 };
 
 export default ({ onSubmit, fielderror, initialData }: Props): JSX.Element => {
+  const validationSchema = yup.object().shape({
+    title: yup.string().required('Required field').max(255).nullable(),
+    content: yup.string().required('Required field').max(1000).nullable(),
+  });
   return (
     <Formik
       initialValues={{
@@ -26,6 +31,7 @@ export default ({ onSubmit, fielderror, initialData }: Props): JSX.Element => {
           .catch((error) => console.log(error));
       }}
       enableReinitialize
+      validationSchema={validationSchema}
     >
       {(formik) => {
         return (

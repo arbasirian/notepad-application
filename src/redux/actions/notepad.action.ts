@@ -22,9 +22,15 @@ export function update(data: { notepadId: string; notepad: NotepadNewModel }) {
   };
 }
 
-export function deleteNotepad(data: { notepadId: string }) {
+export function deleteNotepad(params: { notepadId: string }) {
   return {
     type: ActionTypes.DELETE_NOTEPAD,
-    data,
+    params,
+  };
+}
+
+export function clearNotepad() {
+  return {
+    type: ActionTypes.CLEAR_NOTEPAD,
   };
 }

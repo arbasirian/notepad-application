@@ -12,6 +12,7 @@ export default [
 
   // NOTEPAD
   promise('NOTEPAD', 'lucd'),
+  promise('CLEAR_NOTEPAD'),
 
   // STATS
   promise('STATS', 'a'),

@@ -1,7 +1,7 @@
-import { FetchingDataType } from 'types';
+import { FetchingDataType, GistModel } from 'types';
 
 export interface NotepadStateModel {
-  detail: FetchingDataType<any>;
+  detail: FetchingDataType<GistModel>;
 }
 
 export interface NoteNewModel {
