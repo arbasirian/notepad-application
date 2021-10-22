@@ -1,4 +1,4 @@
-export * from './main.state';
+export * from './notepad';
 export * from './root.state';
 export * from './route';
 export * from './shared';
