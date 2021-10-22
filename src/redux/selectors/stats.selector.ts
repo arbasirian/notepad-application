@@ -7,3 +7,18 @@ export const all = createSelector(
   [selectStats],
   (main: StatsStateModel) => main?.all
 );
+
+export const allFiles = createSelector(
+  [selectStats],
+  (main: StatsStateModel) => main?.allFiles
+);
+
+export const buckets = createSelector(
+  [selectStats],
+  (main: StatsStateModel) => main?.time_buckets
+);
+
+export const filterInfo = createSelector(
+  [selectStats],
+  (main: StatsStateModel) => main?.filter_info
+);

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import mainReducer from './main.reducer';
+import notepadReducer from './notepad.reducer';
 import statsReducer from './stats.reducer';
 
 const persistConfig = {
@@ -12,7 +12,7 @@ const persistConfig = {
 };
 
 const appReducer = combineReducers({
-  main: mainReducer,
+  notepad: notepadReducer,
   stats: statsReducer,
 });
 
