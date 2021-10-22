@@ -9,13 +9,13 @@ export const Container = styled.div`
     width: 1024px;
   }
   @media screen and (max-width: ${(props) => props.theme.breakpoints.xl}) {
-    width: 960px;
+    width: 80%;
   }
   @media screen and (max-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 720px;
+    width: 90%;
   }
   @media screen and (max-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 540px;
+    width: 90%;
   }
   @media screen and (max-width: ${(props) => props.theme.breakpoints.xs}) {
     width: 100%;

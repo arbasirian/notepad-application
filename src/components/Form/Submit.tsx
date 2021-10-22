@@ -19,7 +19,7 @@ export default (props: any): JSX.Element => {
   const { isSubmitting, isValid } = formik;
 
   return (
-    <StyleWrapper className='submit-button'>
+    <StyleWrapper className="submit-button">
       <Button
         className={className}
         htmlType={htmlType}

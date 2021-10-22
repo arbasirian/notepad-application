@@ -18,6 +18,11 @@ const octokitHelper = async ({ type, ...params }: any) => {
       per_page: params.params.per_page,
       since: params.params.since,
     });
+  if (type === ActionTypes.CREATE_NOTEPAD)
+    return await octokit.request('POST /gists', { ...params.data });
+
+  if (type === ActionTypes.LOAD_NOTEPAD)
+    return await octokit.request(`GET /gists/${params.params.notepadId}`);
 
   return await octokit;
 };

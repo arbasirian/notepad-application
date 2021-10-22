@@ -6,7 +6,7 @@ export interface NotepadStateModel {
 
 export interface NoteNewModel {
   title: string;
-  note: string;
+  content: string;
 }
 
 export interface NotepadNewModel {
