@@ -1,5 +1,6 @@
 import moment, { DurationInputArg2, Moment } from 'moment';
 import { GistModel, TimeBucketModel } from 'types';
+const DATE_FORMAT = 'HH:mm:ss';
 
 /**
  *  Factory function that return list of unique gist items
@@ -30,24 +31,47 @@ const createBucketList = (
   term: number,
   termType: DurationInputArg2
 ): TimeBucketModel[] => {
-  const buckets: TimeBucketModel[] = [{ time, second: moment().valueOf() }];
-  if (qty < 2) return buckets;
-  for (let i = 1; i < qty; i++) {
-    let newTime = moment().subtract(term * i, termType);
+  const buckets: TimeBucketModel[] = [];
+  for (let i = 0; i < qty; i++) {
+    let newTime = moment(time).subtract(term * i, termType);
     buckets.unshift({ time: newTime, second: newTime.valueOf() });
   }
 
   return buckets;
 };
 
-const gitsItemsPerTime = (gists: GistModel[], times: TimeBucketModel[]) => {
+const gitsItemsPerTime = (
+  gists: GistModel[],
+  times: TimeBucketModel[],
+  timeType: DurationInputArg2
+): number[] => {
   const chartDetails: number[] = [];
-  if (!gists || gists?.length < 1) return [];
+  if (!gists || gists?.length < 1) return new Array(times.length).fill(0);
   times.forEach((item, index) =>
     chartDetails.push(
       gists.filter((gist) =>
-        filterItemsBaseTime(gist, item.time, times[index + 1]?.time)
+        filterItemsBaseTime(gist, item.time, times[index + 1]?.time, timeType)
       ).length
+    )
+  );
+  return chartDetails;
+};
+
+const gitsFilesPerTime = (
+  gists: GistModel[],
+  times: TimeBucketModel[],
+  timeType: DurationInputArg2
+): number[] => {
+  const chartDetails: number[] = [];
+
+  if (!gists || gists?.length < 1) return new Array(times.length).fill(0);
+  times.forEach((item, index) =>
+    chartDetails.push(
+      gists
+        .filter((gist) =>
+          filterItemsBaseTime(gist, item.time, times[index + 1]?.time, timeType)
+        )
+        .map((gist) => ({ ...gist.files })).length
     )
   );
   return chartDetails;
@@ -56,11 +80,17 @@ const gitsItemsPerTime = (gists: GistModel[], times: TimeBucketModel[]) => {
 const filterItemsBaseTime = (
   gist: GistModel,
   current: Moment,
-  next: Moment
+  next: Moment,
+  timeType: DurationInputArg2
 ): boolean => {
+  const createdAt: Moment = moment(gist.created_at);
+  if (!next) return false;
+
   if (
-    moment(new Date(gist.created_at)).diff(current, 'second') >= 0 &&
-    next?.diff(moment(new Date(gist.created_at)), 'second') > 0
+    moment(createdAt, DATE_FORMAT).isBetween(
+      moment(current, DATE_FORMAT),
+      moment(next, DATE_FORMAT)
+    )
   )
     return true;
   return false;
@@ -70,4 +100,5 @@ export default {
   cleanGistsList,
   createBucketList,
   gitsItemsPerTime,
+  gitsFilesPerTime,
 };

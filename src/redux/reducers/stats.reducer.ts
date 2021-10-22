@@ -7,6 +7,7 @@ import moment from 'moment';
 
 export const initialState: StatsStateModel = {
   all: reducerItemInitialState,
+  allFiles: reducerItemInitialState,
   time_buckets: [],
   filter_info: {
     date: moment(),
@@ -15,6 +16,7 @@ export const initialState: StatsStateModel = {
     terms_type: 'second',
     terms_length: 5,
     page: 1,
+    pageFiles: 1,
   },
 };
 
@@ -46,6 +48,7 @@ export default function reducer(state: any = initialState, action: any = {}) {
           fetching: false,
         },
       };
+
     // LOAD_MORE_STATS
     case ActionTypes.LOAD_MORE_STATS:
       return {
@@ -56,7 +59,6 @@ export default function reducer(state: any = initialState, action: any = {}) {
         },
       };
     case ActionTypes.LOAD_MORE_STATS_SUCCESS:
-      console.log(`action.data`, action.data);
       return {
         ...state,
         all: {
@@ -76,16 +78,71 @@ export default function reducer(state: any = initialState, action: any = {}) {
         },
       };
 
+    // LOAD_ALL_STATS_FILES
+    case ActionTypes.LOAD_ALL_STATS_FILES:
+      return {
+        ...state,
+        allFiles: {
+          ...state.allFiles,
+          fetching: true,
+        },
+      };
+    case ActionTypes.LOAD_ALL_STATS_FILES_SUCCESS:
+      return {
+        ...state,
+        allFiles: {
+          data: action.data,
+          fetching: false,
+        },
+      };
+    case ActionTypes.LOAD_ALL_STATS_FILES_FAILURE:
+      return {
+        ...state,
+        allFiles: {
+          ...state.allFiles.data,
+          error: action.error,
+          fetching: false,
+        },
+      };
+
+    // LOAD_MORE_STATS_FILES
+    case ActionTypes.LOAD_MORE_STATS_FILES:
+      return {
+        ...state,
+        allFiles: {
+          ...state.allFiles,
+          fetching: true,
+        },
+      };
+    case ActionTypes.LOAD_MORE_STATS_FILES_SUCCESS:
+      return {
+        ...state,
+        allFiles: {
+          data: action.data
+            ? [...state.allFiles.data, ...action.data]
+            : [...state.allFiles.data],
+          fetching: false,
+        },
+      };
+    case ActionTypes.LOAD_MORE_STATS_FILES_FAILURE:
+      return {
+        ...state,
+        allFiles: {
+          ...state.allFiles.data,
+          error: action.error,
+          fetching: false,
+        },
+      };
+
     // ADD_TIME_BUCKETS
     case ActionTypes.ADD_TIME_BUCKETS:
-      console.log(`action.data`, action.data);
       return {
         ...state,
         time_buckets: action.data,
       };
+
     // UPDATE_STATS_FILTERS
     case ActionTypes.UPDATE_STATS_FILTERS:
-      console.log(`action.data`, action.data);
       return {
         ...state,
         filter_info: action.data,

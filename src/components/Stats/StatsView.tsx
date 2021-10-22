@@ -22,13 +22,13 @@ type Props = {
 };
 const StatsView = ({ onHideStats }: Props) => {
   const promise = usePromise();
-  const [actionLoading, setLoading] = useState(false);
   const filterInfo = useSelector(statsSelector.filterInfo);
 
   // First fetch gists data
   useEffect(() => {
+    const date = moment();
     const timeList = statsHelper.createBucketList(
-      moment(),
+      date,
       filterInfo.chart_qty,
       filterInfo.terms_length,
       filterInfo.terms_type
@@ -39,7 +39,14 @@ const StatsView = ({ onHideStats }: Props) => {
         statsAction.loadAll({
           per_page: filterInfo.per_page,
           page: 1,
-          since: moment().toISOString(),
+          since: moment(date).format(),
+        })
+      ),
+      promise(
+        statsAction.loadAllFiles({
+          per_page: filterInfo.per_page,
+          page: 1,
+          since: moment(date).format(),
         })
       ),
     ]);
@@ -50,27 +57,37 @@ const StatsView = ({ onHideStats }: Props) => {
    * @param {StatsFilterModel} filters - Selected user filter info
    */
   const handleFilterGists = (filters: StatsFilterModel) => {
-    setLoading(true);
+    const date = filters.date;
     const timeList = statsHelper.createBucketList(
-      filters.date || moment(),
+      date,
       filters.chart_qty,
       filters.terms_length,
       filters.terms_type
     );
-    promise(
-      statsAction.loadAll({
-        per_page: filters.per_page,
-        page: 1,
-        since: timeList[0].time.toISOString(),
-      })
-    ).then(() => {
-      Promise.all([
-        promise(statsAction.addTimeBuckets(timeList)),
-        promise(statsAction.upadteStatsFilter({ ...filters, page: 1 })),
-      ]);
-
-      setLoading(false);
-    });
+    Promise.all([
+      promise(
+        statsAction.loadAll({
+          per_page: filters.per_page,
+          page: 1,
+          since: moment(date).format(),
+        })
+      ),
+      promise(
+        statsAction.loadAllFiles({
+          per_page: filters.per_page,
+          page: 1,
+          since: moment(date).format(),
+        })
+      ),
+      promise(statsAction.addTimeBuckets(timeList)),
+      promise(
+        statsAction.upadteStatsFilter({
+          ...filters,
+          date: moment(date),
+          page: 1,
+        })
+      ),
+    ]);
   };
 
   return (
@@ -79,10 +96,7 @@ const StatsView = ({ onHideStats }: Props) => {
         <Popover
           placement="bottomRight"
           content={
-            <StatsDateFilterForm
-              onSubmit={handleFilterGists}
-              loading={actionLoading}
-            />
+            <StatsDateFilterForm onSubmit={handleFilterGists} loading={false} />
           }
           trigger="click"
         >

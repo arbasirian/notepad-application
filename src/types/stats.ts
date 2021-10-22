@@ -3,6 +3,7 @@ import { FetchingDataType, FiltersDataType } from 'types';
 
 export interface StatsStateModel {
   all: FetchingDataType<GistModel[]>;
+  allFiles: FetchingDataType<GistModel[]>;
   time_buckets: TimeBucketModel[];
   filter_info: StatsFilterModel;
 }
@@ -18,10 +19,11 @@ export interface LoadAllStatsParamsModel {
 }
 
 export interface StatsFilterModel {
-  date?: Moment;
+  date: Moment;
   chart_qty: number;
   per_page: number;
   page?: number;
+  pageFiles?: number;
   terms_type: DurationInputArg2;
   terms_length: number;
 }

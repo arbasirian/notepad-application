@@ -15,11 +15,10 @@ type Props = {
 
 export default ({ onSubmit, loading }: Props): JSX.Element => {
   const filterInfo = useSelector(statsSelector.filterInfo);
-
   return (
     <Formik
       initialValues={{
-        date: filterInfo.date || moment(),
+        date: filterInfo.date,
         terms_type: filterInfo.terms_type,
         chart_qty: filterInfo.chart_qty,
         per_page: filterInfo.per_page,
@@ -76,10 +75,9 @@ export default ({ onSubmit, loading }: Props): JSX.Element => {
               placeholder="Terms Type"
               defaultValue={'second'}
               options={[
-                { key: 'second', title: 'Second' },
-                { key: 'minute', title: 'Minute' },
-                { key: 'hour', title: 'Hour' },
-                { key: 'day', title: 'Day' },
+                { key: 'seconds', title: 'Second' },
+                { key: 'minutes', title: 'Minute' },
+                { key: 'hours', title: 'Hour' },
               ]}
             />
             <Select
