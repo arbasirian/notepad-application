@@ -55,6 +55,7 @@ const gitsItemsPerTime = (
   const chartDetails: number[] = [];
   if (!gists || gists?.length < 1) return new Array(times.length).fill(0);
   const gistList = [...gists];
+
   times.forEach((item, index) =>
     chartDetails.push(
       gistList.filter((gist) =>
@@ -109,7 +110,15 @@ const filterItemsBaseTime = (
   if (!next) return true;
   const createdAt: Moment = moment(gist.created_at);
 
-  if (createdAt.isBetween(current, next, timeType, '[)')) return true;
+  const currentdDate = new Date(current.format());
+  const createdAtDate = new Date(createdAt.format());
+  const nextDate = new Date(next.format());
+
+  if (
+    currentdDate.getTime() <= createdAtDate.getTime() &&
+    createdAtDate.getTime() < nextDate.getTime()
+  )
+    return true;
   return false;
 };
 
