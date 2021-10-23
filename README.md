@@ -4,11 +4,13 @@ This project is an template that contain typescript and antd
 
 ## Notepad Section
 
-User can add New Notepad but each notpad should have at list 1 note
+User can add New Notepad but each notepad should have at list 1 note
 
 ## Stats Section
 
 In this section, the list of gist items will show in the chart. Public gist API filters data base on update_at so I add a filter component to show the result of the data, base on a specific date.
+
+\*NOTICE: Note that the information does not return at specified times, and this is due to the type of API filter, which is sine updated_at, not the created_at date.
 
 ### Filters
 
