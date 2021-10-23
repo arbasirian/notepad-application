@@ -5,7 +5,8 @@ This project is an template that contain typescript and antd
 ## Notepad Section
 
 User can add New Notepad but each notepad should have at list 1 note.
-\After New Notepad is created, for updating the notepad and the notes you should update notepad to save the changes
+
+After New Notepad is created, for updating the notepad and the notes you should update notepad to save the changes
 
 ## Stats Section
 
