@@ -2,6 +2,22 @@
 
 This project is an template that contain typescript and antd
 
+## Notepad Section
+
+User can add New Notepad but each notpad should have at list 1 note
+
+## Stats Section
+
+In this section, the list of gist items will show in the chart. Public gist API filters data base on update_at so I add a filter component to show the result of the data, base on a specific date.
+
+### Filters
+
+`Date` Date
+`Steps` Count of step to show in chart
+`Page Size` Size of item per page
+`Terms Type` type of steps like second, minute, ... (default second)
+`Terms Lenght` the lenght of each step base on terms type (default 5)
+
 ## Available Scripts
 
 In the project directory, you can run:
