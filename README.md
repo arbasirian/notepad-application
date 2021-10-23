@@ -1,6 +1,6 @@
 # Nodepad Application
 
-This project is an template that contain typescript and antd
+This project is a notepad application and also shows all gists count base on the specific date on charts
 
 ## Notepad Section
 
